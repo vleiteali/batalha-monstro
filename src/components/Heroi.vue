@@ -9,13 +9,13 @@
 
       <v-card-subtitle class="mt-2">
         <v-row class="mx-2 mb-1 mt-0" align="center" justify="space-between">
-          <span v-if="golpeHeroi > 0" class="overline green--text">+{{golpeHeroi}} ataque</span>
-          <span v-if="cura > 0" class="overline blue--text">+{{cura}} cura</span>
+          <span v-if="golpeHeroi > 0" class="overline green--text">+{{ golpeHeroi }} ataque</span>
+          <span v-if="cura > 0" class="overline blue--text">+{{ cura }} cura</span>
           <span></span>
-          <span v-if="golpeMonstro > 0" class="overline red--text">-{{golpeMonstro}} golpe</span>
+          <span v-if="golpeMonstro > 0" class="overline red--text">-{{ golpeMonstro }} golpe</span>
         </v-row>
         <v-progress-linear color="light-blue" height="20" :value="energia" striped>
-          <span class="title">{{energia}} %</span>
+          <span class="title">{{ energia }} %</span>
         </v-progress-linear>
       </v-card-subtitle>
 
@@ -36,7 +36,7 @@
 
         <v-card-text>
           <br />
-          <span class="display-1">{{fator01}} x {{fator02}} =</span>
+          <span class="display-1">{{ fator01 }} x {{ fator02 }} =</span>
           <br />
           <v-form ref="form" v-model="valid">
             <v-text-field v-model="resposta" label="Resposta" type="number" required></v-text-field>
@@ -55,7 +55,7 @@
 
         <v-card-text>
           <br />
-          <span class="display-1">{{fator01}} ÷ {{fator02}} =</span>
+          <span class="display-1">{{ fator01 }} ÷ {{ fator02 }} =</span>
           <br />
           <v-form ref="form" v-model="valid">
             <v-text-field v-model="resposta" label="Resposta" type="number" required></v-text-field>
@@ -72,7 +72,6 @@
 </template>
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import db from '@/plugins/firestore'
 export default {
   data: () => ({
     dialog_ataque: false,
@@ -88,20 +87,20 @@ export default {
     ...mapGetters(['golpeHeroi', 'golpeMonstro'])
   },
   mounted() {
-    let observer = db
-      .collection('batalha')
-      .doc('current')
-      .onSnapshot(snapshot => {
-        if (snapshot.type === 'added') {
-          console.log('New city: ', snapshot.doc.data())
-        }
-        if (snapshot.type === 'modified') {
-          console.log('Modified city: ', snapshot.doc.data())
-        }
-        if (snapshot.type === 'removed') {
-          console.log('Removed city: ', snapshot.doc.data())
-        }
-      })
+    // let observer = db
+    //   .collection('batalha')
+    //   .doc('current')
+    //   .onSnapshot(snapshot => {
+    //     if (snapshot.type === 'added') {
+    //       console.log('New city: ', snapshot.doc.data())
+    //     }
+    //     if (snapshot.type === 'modified') {
+    //       console.log('Modified city: ', snapshot.doc.data())
+    //     }
+    //     if (snapshot.type === 'removed') {
+    //       console.log('Removed city: ', snapshot.doc.data())
+    //     }
+    //   })
   },
   methods: {
     ...mapActions(['heroiAtacar', 'heroiCurar']),

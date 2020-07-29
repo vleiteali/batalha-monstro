@@ -1,10 +1,7 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import db from '@/plugins/firestore'
+import Vue from 'vue'
+import Vuex from 'vuex'
 
-Vue.use(Vuex);
-
-
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
@@ -13,7 +10,7 @@ export default new Vuex.Store({
     golpe_monstro: 0,
     golpe_heroi: 0,
     cura_monstro: 0,
-    cura_heroi: 0,
+    cura_heroi: 0
   },
   getters: {
     energiaHeroi: state => {
@@ -33,7 +30,7 @@ export default new Vuex.Store({
     },
     curaMonstro: state => {
       return state.cura_monstro
-    },
+    }
   },
   mutations: {
     ataqueHeroi(state, payload) {
@@ -60,16 +57,19 @@ export default new Vuex.Store({
       state.cura_monstro = payload
       state.energia_monstro = state.energia_monstro + payload
     }
-
   },
   actions: {
     heroiAtacar(store) {
       const sangue_ataque = Math.floor(Math.random() * 10) + 1
 
       db.collection('batalha')
-        .doc('current').set({
-          capital: true
-        }, { merge: true });
+        .doc('current')
+        .set(
+          {
+            capital: true
+          },
+          { merge: true }
+        )
 
       store.commit('ataqueHeroi', sangue_ataque)
     },
@@ -85,8 +85,6 @@ export default new Vuex.Store({
       const sangue_cura = Math.floor(Math.random() * 10) + 1
       store.commit('curaMonstro', sangue_cura)
     }
-
-
   },
   modules: {}
-});
+})

@@ -1,37 +1,37 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
-import Instrucoes from "../views/Instrucoes";
-import Lobby from "../views/Lobby";
-import Batalha from "../views/Batalha";
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Instrucoes from '../views/Instrucoes'
+import Lobby from '../views/Lobby'
+import Batalha from '../views/Batalha'
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "/instrucoes",
-    name: "instrucoes",
+    path: '/instrucoes',
+    name: 'instrucoes',
     component: Instrucoes
   },
   {
-    path: "/lobby",
-    name: "lobby",
+    path: '/lobby',
+    name: 'lobby',
     component: Lobby
   },
   {
-    path: "/batalha",
-    name: "batalha",
+    path: '/batalha',
+    name: 'batalha',
     component: Batalha
   },
   {
-    path: "*",
-    redirect: "/instrucoes"
+    path: '*',
+    redirect: '/lobby'
   }
-];
+]
 
 const router = new VueRouter({
-  mode: "history",
+  mode: 'history',
   base: process.env.BASE_URL,
   routes
-});
+})
 
-export default router;
+export default router
